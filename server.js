@@ -16,15 +16,15 @@ app.use(express.json());
 
 //User Registration.
 app.post("/register", async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name,rollno, email, password, } = req.body;
 
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }|| {rollno});
     if (user) {
       return res.status(400).json({ message: "Email already exists" });
     }
 
-    const newUser = new User({ name, email, password });
+    const newUser = new User({ name, rollno, email, password });
     await newUser.save();
 
     res.status(201).json({ message: "User created successfully" });
@@ -35,15 +35,15 @@ app.post("/register", async (req, res) => {
 });
 // Tutor Registration.
 app.post("/tutor/register", async (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, rollno, email, password } = req.body;
   
     try {
-      const tutor = await Tutor.findOne({ email });
+      const tutor = await Tutor.findOne({ email }|| {rollno});
       if (tutor) {
         return res.status(400).json({ message: "Email already exists" });
       }
   
-      const newTutor = new Tutor({ name, email, password });
+      const newTutor = new Tutor({ name, rollno, email, password });
       await newTutor.save();
   
       res.status(201).json({ message: "Tutor created successfully" });
