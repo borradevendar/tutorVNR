@@ -1,7 +1,10 @@
 require("dotenv").config();
+const User = require("./Backend/User");
+const Tutor = require("./Backend/Tutor");
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log("Connected to MongoDb"))
@@ -35,15 +38,15 @@ app.post("/tutor/register", async (req, res) => {
     const { name, email, password } = req.body;
   
     try {
-      const user = await User.findOne({ email });
-      if (user) {
+      const tutor = await Tutor.findOne({ email });
+      if (tutor) {
         return res.status(400).json({ message: "Email already exists" });
       }
   
-      const newUser = new User({ name, email, password });
-      await newUser.save();
+      const newTutor = new Tutor({ name, email, password });
+      await newTutor.save();
   
-      res.status(201).json({ message: "User created successfully" });
+      res.status(201).json({ message: "Tutor created successfully" });
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: "Server error" });

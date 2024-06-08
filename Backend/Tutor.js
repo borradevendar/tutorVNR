@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+const bcryptjs = require('bcryptjs');
 const tutorSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
@@ -10,4 +12,5 @@ const tutorSchema = new mongoose.Schema({
     next();
   });
   
-  const User = mongoose.model('Tutor', tutorSchema);
+  const Tutor = mongoose.model('Tutor', tutorSchema);
+  module.exports = Tutor;
