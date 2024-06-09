@@ -1,4 +1,5 @@
 const Tutor = require('./Tutor.js');
+const jwt = require('jsonwebtoken'); 
 const bcryptjs = require('bcryptjs');
 module.exports = (app) => {
 app.post('/tutor/login', async (req, res) => {
@@ -15,8 +16,9 @@ app.post('/tutor/login', async (req, res) => {
         return res.status(401).json({ message: 'Invalid email or password' });
       }
   
+      const token = jwt.sign({ tutor_id: tutor._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
   
-      res.status(200).json({ message: 'Login successful', tutor });
+      res.status(200).json({ message: 'Login successful', tutor, token });
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: 'Server error' });

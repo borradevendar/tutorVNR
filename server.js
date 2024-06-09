@@ -6,6 +6,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const UserLogin = require('./Backend/UserLogin.js');
 const TutorLogin = require('./Backend/TutorLogin.js');
+const TutorSchedule = require('./Backend/TutorSchedule.js');
 
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -29,7 +30,7 @@ app.post("/register", async (req, res) => {
     const newUser = new User({ name, rollno, email, password });
     await newUser.save();
 
-    res.status(201).json({ message: "User created successfully" });
+    res.status(201).json({ message: "User created successfully",  });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });
@@ -56,6 +57,8 @@ app.post("/tutor/register", async (req, res) => {
   });
 UserLogin(app);
 TutorLogin(app);
+TutorSchedule(app);
+
 
 const port = process.env.PORT || 5000; 
 app.listen(port, () => console.log(`Listening at port number : ${port}`))

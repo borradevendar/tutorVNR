@@ -5,6 +5,8 @@ const tutorSchema = new mongoose.Schema({
     rollno:{type:String, required:true, unique:true},
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    subjects: {type: String},
+    time:{type:String}
   });
   
   tutorSchema.pre('save', async function (next) {
