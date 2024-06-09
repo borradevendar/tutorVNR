@@ -5,6 +5,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const UserLogin = require('./Backend/UserLogin.js');
+const TutorLogin = require('./Backend/TutorLogin.js');
 
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -54,6 +55,7 @@ app.post("/tutor/register", async (req, res) => {
     }
   });
 UserLogin(app);
+TutorLogin(app);
 
 const port = process.env.PORT || 5000; 
 app.listen(port, () => console.log(`Listening at port number : ${port}`))
