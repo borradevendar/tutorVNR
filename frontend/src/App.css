@@ -1,3 +1,19 @@
 .App {
   text-align: center;
 }
+.loginContainer{
+  margin-top:45vh;
+}
+
+.buttonContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: auto;
+}
+.signInButton{
+  width: 12em;
+  height: 6em;
+  border-radius: 0.8em;
+  font-size: large;
+}
