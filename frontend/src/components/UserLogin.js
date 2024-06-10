@@ -11,6 +11,7 @@ export default function UserLogin() {
             className="form-control "
             id="rollno"
             placeholder="Roll Number"
+            required = {true}
           />
         </div>
         <div className="dummyContainer"></div>
@@ -21,6 +22,7 @@ export default function UserLogin() {
             className="form-control"
             id="password"
             placeholder="Password"
+            required = {true}
           />
         </div>
         <button type="submit" className="btn btn-primary LoginButton">

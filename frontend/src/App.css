@@ -43,3 +43,14 @@
 .dummyContainer{
   height: 1em;
 }
+
+/* CSS for Register Form */
+.registerContainer{
+  width: 60%;
+  height: 33em;
+  margin: auto;
+  margin-top: 15vh;
+  background-color: rgb(236, 232, 232);
+  padding: 20vh;
+  border-radius: 5px;
+}
