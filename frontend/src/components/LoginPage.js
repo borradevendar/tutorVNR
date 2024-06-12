@@ -1,13 +1,15 @@
-export default function LoginPage() {
+import React from 'react';
+
+function LoginPage() {
   return (
     <div className="loginContainer">
       <div className="buttonContainer">
-        <a href="/">
+        <a href="login">
           <button className="bg-dark text-light signInButton">
             SignIn as a User
           </button>
         </a>
-        <a href="/">
+        <a href="/tutor/login">
           <button className="bg-dark text-light signInButton">
             SignIn as a Tutor
           </button>
@@ -16,3 +18,5 @@ export default function LoginPage() {
     </div>
   );
 }
+export default LoginPage;
+
