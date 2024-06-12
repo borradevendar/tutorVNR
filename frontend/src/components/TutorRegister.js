@@ -1,7 +1,31 @@
+import React, { useState } from "react";
+import axios from "axios";
+// import { compareSync } from "bcryptjs";
 export default function TutorRegister() {
+  const [name, setName] = useState("");
+  const [rollno, setRoll] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleTutorRegister = async (e) =>{
+    e.preventDefault();
+    try{
+      const response = await axios.post("http://localhost:3000/tutor/register",{
+        name,
+        rollno,
+        email,
+        password
+      });
+      console.log(response.data);
+    }
+    catch(error){
+      console.error(error);
+    }
+  };
+  
   return (
     <div>
-      <form className="registerContainer">
+      <form className="registerContainer" onSubmit={handleTutorRegister}>
         <h1 className="formTitle">Register as Tutor</h1>
         <div className="form-group">
           <label for="name">Enter Your Name</label>
@@ -11,6 +35,7 @@ export default function TutorRegister() {
             id="name"
             placeholder="Name"
             required={true}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
         <div className="dummyContainer"></div>
@@ -22,6 +47,7 @@ export default function TutorRegister() {
             id="rollno"
             placeholder="Roll Number"
             required={true}
+            onChange={(e) => setRoll(e.target.value)}
           />
         </div>
         <div className="dummyContainer"></div>
@@ -33,6 +59,7 @@ export default function TutorRegister() {
             id="email"
             placeholder="Enter your Email"
             required={true}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="dummyContainer"></div>
@@ -44,6 +71,7 @@ export default function TutorRegister() {
             id="password"
             placeholder="Password"
             required={true}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <button type="submit" className="btn btn-primary LoginButton">
