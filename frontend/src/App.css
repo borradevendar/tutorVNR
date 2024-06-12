@@ -54,3 +54,12 @@
   padding: 20vh;
   border-radius: 5px;
 }
+
+/* CSS for registerLink */
+.registerLink{
+  display: block;
+  margin-top: 1em;
+  text-align: center;
+  text-decoration: none;
+
+}

@@ -28,7 +28,9 @@ export default function UserLogin() {
         <button type="submit" className="btn btn-primary LoginButton">
           Submit
         </button>
+        <a href='/register' className="registerLink"> Don't have an account ? Click here to Register </a>
       </form>
+      
     </div>
   );
 }

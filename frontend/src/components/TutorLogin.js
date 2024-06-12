@@ -28,6 +28,7 @@ export default function TutorLogin() {
           <button type="submit" className="btn btn-primary LoginButton">
             Submit
           </button>
+          <a href='/tutor/register' className="registerLink"> Don't have an account ? Click here to Register </a>
         </form>
       </div>
     );
