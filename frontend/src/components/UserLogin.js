@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { useState } from 'react';
-export default function UserLogin() {
+import { useNavigate } from 'react-router-dom';
+export default function UserLogin({ setIsLoggedIn }) {
     const [rollno, setRollno] = useState('');
     const [password, setPassword] = useState('');
-  
+    const navigate = useNavigate();
+
     const handleLogin = async (e) => {
       e.preventDefault();
   
@@ -13,6 +15,14 @@ export default function UserLogin() {
           password
         });
         console.log(response.data);
+        if (response.data.token) {
+          localStorage.setItem('token', response.data.token); 
+          setIsLoggedIn(true);
+          navigate('/authTrue'); 
+        } else {
+          console.error("Login failed");
+        }
+
       } catch (error) {
         console.error(error);
       }

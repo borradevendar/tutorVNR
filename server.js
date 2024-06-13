@@ -1,4 +1,5 @@
 require("dotenv").config();
+const jwt = require('jsonwebtoken');
 const User = require("./Backend/User");
 const Tutor = require("./Backend/Tutor");
 const express = require("express");
@@ -17,12 +18,28 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+//Middle ware for authentication
+const authMiddleware = (req, res, next) => {
+  const token = req.headers['Authorization'];
+  if (!token) return res.status(401).json({ message: 'Unauthorized' });
+
+  jwt.verify(token, JWT_SECRET, (err, user) => {
+      if (err) return res.status(401).json({ message: 'Unauthorized' });
+      req.user = user;
+      next();
+  });
+};
+app.get('/api/protected', authMiddleware, (req, res) => {
+  res.json({ message: 'This is a protected route' });
+});
+
+
 //User Registration.
 app.post("/register", async (req, res) => {
-  const { name,rollno, email, password, } = req.body;
+  const { name,rollno, email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email }|| {rollno});
+    const user = await User.findOne({$or: [{ email }, {rollno}]});
     if (user) {
       return res.status(400).json({ message: "Email already exists" });
     }
