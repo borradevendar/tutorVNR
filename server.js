@@ -72,6 +72,17 @@ app.post("/tutor/register", async (req, res) => {
       res.status(500).json({ message: "Server error" });
     }
   });
+
+// Fetch tutor details
+app.get('/api/tutors', async (req, res) => {
+  try {
+    const tutors = await Tutor.find();
+    res.json(tutors);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 UserLogin(app);
 TutorLogin(app);
 TutorSchedule(app);

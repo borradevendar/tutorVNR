@@ -1,7 +1,10 @@
+import FetchTutor from "./FetchTutor";
+
 export default function HomePage(){
     return(
         <div>
-            <h1>HomePage</h1>
+            <div className="HomePageContainer"></div>
+            <div><FetchTutor/></div>
         </div>
     )
 }
